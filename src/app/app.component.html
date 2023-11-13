@@ -1,0 +1,98 @@
+<div>
+  <h1 align="center">Placement-Module</h1>
+</div>
+
+<div class="card mat-5" style="padding: 30px;">
+  <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+
+    <div class="form-group">
+      <label for="stdrollno"> Student Roll no:</label>
+      <input type="text" #stdrollno (ngModel)="stdrollno" name="stdrollno" id="stdrollno" class="form-control" placeholder="Student rollno:">
+    </div>
+    
+
+    <div class="form-group">
+      <label for="stdname"> Student Name:</label>
+      <input type="text" #stdname (ngModel)="stdname" name="stdname" id="stdname" class="form-control" placeholder="Student name:">
+    </div>
+
+    <div class="form-group">
+      <label for="stdemail"> Student Email:</label>
+      <input type="text" #stdemail (ngModel)="stdemail" name="stdemail" id="stdemail" class="form-control" placeholder="Student Email:">
+    </div>
+
+    <div class="form-group">
+      <label for="number"> Student Number:</label>
+      <input type="text" #number (ngModel)="number" name="number" id="number" class="form-control" placeholder="Student Number:">
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Register" class="btn btn-primary" w="300">
+    </div>
+  </form>
+  <div class="mt-5">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th> Roll No </th>
+          <th> Name </th>
+          <th> Email </th>
+          <th> Ph Number </th>
+          <th> Edit </th>
+          <th> Delete </th>
+        </tr>
+      </thead>
+      <tbody class="tbody">
+        <tr *ngFor="let placement of PlacementDetails">
+          <td> {{placement.stdrollno}} </td>
+          <td> {{placement.stdname}} </td>
+          <td> {{placement.stdemail}} </td>
+          <td> {{placement.number}} </td>
+          <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="edit(placement)">Edit</button></td>
+          <td><button type="button" class="btn btn-danger" (click)="deletePlacement(placement)">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div> 
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Update Placement</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #updateForm="ngForm" (ngSubmit)="updatePlacement()">
+
+          <div class="form-group">
+            <label for="stdrollno"> Student Roll no:</label>
+            <input type="text" #stdrollno [(ngModel)]="placementToUpdate.stdrollno" name="stdrollno" id="stdrollno" class="form-control" placeholder="Student rollno:">
+          </div>
+          
+      
+          <div class="form-group">
+            <label for="stdname"> Student Name:</label>
+            <input type="text" #stdname [(ngModel)]="placementToUpdate.stdname" name="stdname" id="stdname" class="form-control" placeholder="Student name:">
+          </div>
+      
+          <div class="form-group">
+            <label for="stdemail"> Student Email:</label>
+            <input type="text" #stdemail [(ngModel)]="placementToUpdate.stdemail" name="stdemail" id="stdemail" class="form-control" placeholder="Student Email:">
+          </div>
+      
+          <div class="form-group">
+            <label for="number"> Student Number:</label>
+            <input type="text" #number [(ngModel)]="placementToUpdate.number" name="number" id="number" class="form-control" placeholder="Student Number:">
+          </div>
+      
+          <div class="form-group">
+              <input type="submit" value="Update" class="btn btn-primary" w="300">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
